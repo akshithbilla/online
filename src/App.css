@@ -1,0 +1,130 @@
+/* Global App styling */
+.App {
+  text-align: center;
+  min-height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+/* Header styling with full-width background image */
+.App-header {
+  width: 100vw; /* Full viewport width */
+  display: flex;
+  flex-direction: column;
+  justify-content: right; /* Center vertically */
+  align-items: flex-start; /* Align items to the left */
+  padding-left: 200px; /* Adjust padding */
+  padding-top: 200px;
+  color: aliceblue;
+  background-image: url('https://www.websitedesign-service.com/wp-content/uploads/2019/11/slide-ecommerce.jpg');
+  background-size: cover; /* Cover entire header */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent image from repeating */
+  height: 100vh; /* Set header height to full viewport */
+  margin: 0; /* Remove any margin */
+  box-sizing: border-box; /* Include padding and border in element's width and height */
+}
+
+h1 {
+  font-size: 3em;
+}
+
+p {
+  font-size: 1.5em;
+  color: #ffffff;
+}
+
+.signup-button {
+  padding: 10px 20px;
+  font-size: 1.5em;
+  color: white;
+  background-color: #640872;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.signup-button:hover {
+  background-color: #9246a4;
+}
+
+/* Body background and general styling */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f3f3f3; /* Neutral background color */
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+.about-us {
+  display: flex; /* Flexbox to align text and image side by side */
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px; /* Adjust padding as needed */
+  background-color: #83bbcc; /* Light background color to make text visible */
+  color: #ffffff; /* Text color for visibility */
+}
+
+.about-text {
+  flex: 1; /* Takes up more space */
+  margin-right: 20px; /* Adds space between text and image */
+  text-align: left; /* Align text to the left */
+  color: #1c0435;
+}
+
+.about-text h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.about-text p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #fff9f9;
+}
+
+.about-image {
+  flex: 1; /* Image takes up equal space */
+}
+
+.about-image img {
+  max-width: 100%; /* Image will take up full width of its container */
+  height: auto; /* Maintain aspect ratio */
+}
+/* Footer.css */
+.App-footer {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.footer-links {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-links li {
+  display: inline;
+  margin: 0 10px;
+}
+
+.footer-links a {
+  color: #61dafb;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+

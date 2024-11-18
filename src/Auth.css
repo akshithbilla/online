@@ -1,0 +1,62 @@
+/* Auth.css */
+.auth-container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+  }
+  
+  .logo h1 {
+    text-align: center;
+    color: #ff7f50;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin: 10px 0 5px;
+  }
+  
+  input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  button {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    background-color: #ff7f50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .social-login {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .facebook-btn, .google-btn {
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .facebook-btn {
+    background-color: #3b5998;
+  }
+  
+  .google-btn {
+    background-color: #db4437;
+  }
+  
