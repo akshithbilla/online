@@ -8,7 +8,7 @@ const products = [
   { id: 2, name: 'Product 2', price: '$20', rating: 4.0, image: 'https://via.placeholder.com/300' },
   { id: 3, name: 'Product 3', price: '$30', rating: 4.2, image: 'https://via.placeholder.com/300' },
   { id: 4, name: 'Product 4', price: '$40', rating: 3.8, image: 'https://via.placeholder.com/300' },
-  { id: 5, name: 'Product 5', price: '$50', rating: 4.9, image: 'https://via.placeholder.com/300' },
+   
   // Add more products as needed
 ];
 
