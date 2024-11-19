@@ -1,7 +1,7 @@
 // src/Login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Auth.css';  // External CSS for styling
+import './Auth.css'; // External CSS for styling
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -18,7 +18,7 @@ const Login = () => {
   return (
     <div className="auth-container">
       <div className="logo">
-        <h1>Shoppy</h1>
+        <h1>Login</h1>
       </div>
       <form onSubmit={handleLogin}>
         <label>Email</label>
@@ -37,11 +37,7 @@ const Login = () => {
         />
         <button type="submit">Login</button>
       </form>
-      <div className="social-login">
-        <p>Or login with</p>
-        <button className="facebook-btn">Facebook</button>
-        <button className="google-btn">Google</button>
-      </div>
+      
     </div>
   );
 };
