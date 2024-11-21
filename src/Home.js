@@ -4,32 +4,29 @@ import './Home.css';
 
 const Home = () => {
   const [groupedRecommendations, setGroupedRecommendations] = useState({});
-  const [error, setError] = useState(null); // State to track any errors
-  const [searchTerm, setSearchTerm] = useState(''); // State to track the search term
+  const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
-  // Fetch recommendations from the JSON or API
   useEffect(() => {
     const fetchRecommendations = async () => {
       try {
-        console.log("Fetching recommendations...");
-        const response = await fetch('/products.json'); // Replace with your API endpoint if necessary
-        console.log("Response received:", response);
+        const response = await fetch('http://127.0.0.1:5000/recommend', { // Flask endpoint
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ product_id: 'someProductID' })
+        });
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const data = await response.json();
-        console.log("Data fetched successfully:", data);
-
-        // Filter products to include only those with a rating of 4 or 5
-        const filteredData = data.filter((product) => product.Rating >= 4);
-        console.log("Filtered data (4 and 5 star ratings):", filteredData);
-
-        // Group products by rating in descending order
-        const grouped = filteredData.reduce((acc, product) => {
-          const rating = product.Rating || 0; // Default rating to 0 if not available
+        // Assuming data is in the correct format
+        const grouped = data.recommendations.reduce((acc, product) => {
+          const rating = product.similarity_score || 0;
           if (!acc[rating]) {
             acc[rating] = [];
           }
@@ -37,33 +34,28 @@ const Home = () => {
           return acc;
         }, {});
 
-        // Convert grouped object into sorted array by rating
         const sortedGrouped = Object.keys(grouped)
-          .sort((a, b) => b - a) // Sort ratings in descending order
+          .sort((a, b) => b - a)
           .reduce((sortedAcc, rating) => {
             sortedAcc[rating] = grouped[rating];
             return sortedAcc;
           }, {});
 
-        console.log("Data grouped and sorted by rating:", sortedGrouped);
         setGroupedRecommendations(sortedGrouped);
       } catch (err) {
-        console.error("Error fetching or processing recommendations:", err);
-        setError(err.message);
+        setError("Failed to fetch recommendations.");
+        console.error("Error fetching recommendations:", err);
       }
     };
 
     fetchRecommendations();
   }, []);
 
-  // Handle search input change
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  // Handle search submit
   const handleSearchSubmit = () => {
-    // Navigate to SearchResultsPage with search term as a query parameter
     navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
   };
 
@@ -71,7 +63,6 @@ const Home = () => {
     <div className="home-container">
       <h1>Recommended Products</h1>
 
-      {/* Search Bar */}
       <input
         type="text"
         placeholder="Search products..."
@@ -84,7 +75,7 @@ const Home = () => {
       </button>
 
       {error ? (
-        <p className="error-message">Error: {error}</p>
+        <p className="error-message">{error}</p>
       ) : Object.keys(groupedRecommendations).length > 0 ? (
         <div>
           {Object.keys(groupedRecommendations).map((rating) => (
@@ -93,19 +84,19 @@ const Home = () => {
               <div className="product-grid">
                 {groupedRecommendations[rating]
                   .filter((product) =>
-                    product.Name.toLowerCase().includes(searchTerm.toLowerCase())
-                  ) // Filter products based on the search term
+                    product.product_name.toLowerCase().includes(searchTerm.toLowerCase())
+                  )
                   .map((product) => (
-                    <div key={product.ID} className="product-card">
-                      <Link to={`/product/${product.ID}`}>
+                    <div key={product.product_id} className="product-card">
+                      <Link to={`/product/${product.product_id}`}>
                         <img
-                          src={product.Image}
-                          alt={product.Name}
+                          src={product.product_image}
+                          alt={product.product_name}
                           className="product-image"
                         />
-                        <h3 className="product-name">{product.Name}</h3>
-                        <p className="product-description">{product.Description}</p>
-                        <p className="product-price">₹{product.discounted_price}</p>
+                        <h3 className="product-name">{product.product_name}</h3>
+                        <p className="product-description">{product.product_description}</p>
+                        <p className="product-price">₹{product.product_discounted_price}</p>
                       </Link>
                     </div>
                   ))}
@@ -114,10 +105,7 @@ const Home = () => {
           ))}
         </div>
       ) : (
-        <p style={{ color: '#333', fontSize: '1.2rem', textAlign: 'center', marginTop: '20px' }}>
-  Loading recommendations...
-</p>
-
+        <p>Loading recommendations...</p>
       )}
     </div>
   );

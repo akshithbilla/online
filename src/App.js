@@ -9,6 +9,8 @@ import Navbar from './Navbar';
 import Header from './Header';
 import ProductPage from './ProductPage';
 import SearchResultsPage from './SearchResultsPage';
+import ProductRecommendations from './ProductRecommendations';
+
 
 function AppLayout() {
   const location = useLocation();
@@ -23,20 +25,21 @@ function AppLayout() {
       {/* Render Navbar and Header only if not on fresh pages */}
       {!isFreshPage && <Navbar />}
       {!isFreshPage && <Header />}
+
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/productshome" element={<Home />} />
+        {/* Update ProductPage route to include productId as a dynamic parameter */}
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/search" element={<SearchResultsPage />} />
       </Routes>
+
       {/* Render Footer only if not on fresh pages */}
       {!isFreshPage && <Footer />}
     </div>
   );
 }
-
-
 
 function App() {
   return (
